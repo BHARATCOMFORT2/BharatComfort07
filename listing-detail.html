@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing Details</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
+</head>
+<body>
+
+<header>
+    <h1>BharatComfort</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login/Register</a>
+    </nav>
+</header>
+
+<section id="listing-detail">
+    <h2 id="listing-name"></h2>
+    <p id="listing-type"></p>
+    <p id="listing-location"></p>
+    <p id="listing-price"></p>
+    
+    <!-- Map -->
+    <div id="listing-map" style="width:100%;height:300px;margin-top:10px;"></div>
+
+    <!-- Reviews -->
+    <h3>Reviews</h3>
+    <div id="reviews-container"></div>
+
+    <!-- Add Review -->
+    <div id="add-review">
+        <input type="text" id="review-user" placeholder="Your Name" required>
+        <textarea id="review-text" placeholder="Write your review..." required></textarea>
+        <button id="submit-review">Submit Review</button>
+    </div>
+
+    <!-- Booking Form -->
+    <h3>Book This Listing</h3>
+    <form id="booking-form">
+        <input type="text" id="booking-name" placeholder="Your Name" required>
+        <input type="email" id="booking-email" placeholder="Email" required>
+        <input type="tel" id="booking-phone" placeholder="Phone Number" required>
+        <input type="date" id="booking-date" required>
+        <input type="number" id="booking-guests" placeholder="Number of Guests" required min="1">
+        <button type="submit">Book Now</button>
+    </form>
+    <div id="booking-message"></div>
+</section>
+
+<script src="firebase.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
