@@ -9,9 +9,8 @@ document.getElementById("register-btn").addEventListener("click", () => {
     let role = document.getElementById("register-role").value;
 
     // Superadmin check
-    const superadminEmail = "superadmin@bharatcomfort.com";
-    if(email === superadminEmail) role = "superadmin";
-
+    const superadminEmail = "shrrajbhar12340@gmail.com";
+    if(email === shrrajbhar12340@gmail.com) role = "superadmin";
     if(!name || !email || !password) return alert("Fill all fields");
 
     auth.createUserWithEmailAndPassword(email, password)
@@ -89,7 +88,7 @@ document.getElementById("modal-register-btn").addEventListener("click", ()=>{
     const email=document.getElementById("modal-register-email").value;
     const password=document.getElementById("modal-register-password").value;
     let role=document.getElementById("modal-register-role").value;
-    if(email==="superadmin@bharatcomfort.com") role="superadmin";
+    if(email==="shrrajbhar12340@gmail.com") role="superadmin";
     if(!name||!email||!password) return alert("Fill all fields");
 
     auth.createUserWithEmailAndPassword(email,password).then(cred=>{
