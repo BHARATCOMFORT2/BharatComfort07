@@ -1,4 +1,26 @@
 // main.js
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script>
+  // Initialize Firebase
+  const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT.appspot.com",
+      messagingSenderId: "SENDER_ID",
+      appId: "APP_ID"
+  };
+  firebase.initializeApp(firebaseConfig);
+
+  // Firestore reference
+  const db = firebase.firestore();
+
+  // Auth reference
+  const auth = firebase.auth();
+</script>
 
 document.addEventListener("DOMContentLoaded", function() {
     // 1. Partner Form Submission
