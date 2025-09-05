@@ -146,6 +146,27 @@
         </div>
     </footer>
     <!-- Login/Register Modal -->
+<div id="login-modal" class="modal">
+  <div class="modal-content">
+    <span id="close-login" class="close">&times;</span>
+    <h2>Login</h2>
+    <input type="email" id="modal-login-email" placeholder="Email">
+    <input type="password" id="modal-login-password" placeholder="Password">
+    <button id="modal-login-btn">Login</button>
+
+    <h2>Register</h2>
+    <input type="text" id="modal-register-name" placeholder="Full Name">
+    <input type="email" id="modal-register-email" placeholder="Email">
+    <input type="password" id="modal-register-password" placeholder="Password">
+    <select id="modal-register-role">
+      <option value="user">User</option>
+      <option value="partner">Partner</option>
+    </select>
+    <button id="modal-register-btn">Register</button>
+
+    <div id="modal-auth-message"></div>
+  </div>
+</div>
 <div id="auth-modal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
@@ -181,4 +202,5 @@
   // Auth reference
   const auth = firebase.auth();
 </script>
+</body>
 </html>
