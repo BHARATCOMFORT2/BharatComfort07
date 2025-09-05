@@ -24,6 +24,38 @@
 
 document.addEventListener("DOMContentLoaded", function() {
     // 1. Partner Form Submission
+  // Partner Form Submission
+partnerForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = partnerForm.name.value.trim();
+    const business = partnerForm.business.value.trim();
+    const designation = partnerForm.designation.value.trim();
+    const contact = partnerForm.contact.value.trim();
+    const reference = partnerForm.reference.value.trim();
+
+    if(name && business && designation && contact){
+        // Save to Firestore
+        db.collection("partners").add({
+            name: name,
+            business: business,
+            designation: designation,
+            contact: contact,
+            reference: reference,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        })
+        .then(() => {
+            formSuccess.style.display = "block";
+            partnerForm.reset();
+        })
+        .catch((error) => {
+            alert("Error saving form: " + error.message);
+        });
+    } else {
+        alert("Please fill in all required fields!");
+    }
+});
+
     const partnerForm = document.getElementById("partner-form");
     const formSuccess = document.querySelector(".form-success");
 
