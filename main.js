@@ -219,10 +219,112 @@ if(bookingForm){
             bookingSuccess.style.display = "block";
             bookingForm.reset();
         }).catch(err => alert(err.message));
-});
+const db = firebase.firestore();
 
+// ----------- Listings Page ------------
+function loadListings() {
+    const container = document.getElementById("listings-container");
+    container.innerHTML = "";
+
+    db.collection("listings").get().then(snapshot => {
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            const card = document.createElement("div");
+            card.className = "listing-card";
+            card.innerHTML = `
+                <img src="${data.image || 'assets/images/placeholder.jpg'}" alt="${data.name}">
+                <h3>${data.name}</h3>
+                <p>${data.type} - ${data.location}</p>
+                <p>₹${data.price} per night</p>
+            `;
+            card.addEventListener("click", () => {
+                window.location.href = `listing-detail.html?id=${doc.id}`;
+            });
+            container.appendChild(card);
+        });
+    });
+}
+
+// ----------- Listing Detail Page ------------
+function loadListingDetail() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    if(!id) return;
+
+    const detailSection = document.getElementById("listing-detail");
+
+    db.collection("listings").doc(id).get().then(doc => {
+        if(!doc.exists) return alert("Listing not found");
+
+        const data = doc.data();
+        document.getElementById("listing-name").textContent = data.name;
+        document.getElementById("listing-type").textContent = data.type;
+        document.getElementById("listing-location").textContent = data.location;
+        document.getElementById("listing-price").textContent = `₹${data.price} per night`;
+
+        // Load map
+        const map = new google.maps.Map(document.getElementById("listing-map"), {
+            center: {lat: data.lat || 0, lng: data.lng || 0},
+            zoom: 15
+        });
+        new google.maps.Marker({
+            position: {lat: data.lat || 0, lng: data.lng || 0},
+            map: map,
+            title: data.name
+        });
+
+        // Load reviews
+        const reviewsContainer = document.getElementById("reviews-container");
+        reviewsContainer.innerHTML = "";
+        (data.reviews || []).forEach(r => {
+            const div = document.createElement("div");
+            div.textContent = `${r.user}: ${r.text}`;
+            reviewsContainer.appendChild(div);
+        });
     });
 
-    // 4. Placeholder for Dynamic Listings / Stories Loading
-    // You can later fetch listings/stories from Firebase or JSON
-});
+    // Submit review
+    document.getElementById("submit-review").addEventListener("click", () => {
+        const user = document.getElementById("review-user").value;
+        const text = document.getElementById("review-text").value;
+        if(!user || !text) return alert("Enter your name and review");
+
+        const reviewData = { user, text };
+        const listingRef = db.collection("listings").doc(id);
+        listingRef.update({
+            reviews: firebase.firestore.FieldValue.arrayUnion(reviewData)
+        }).then(() => {
+            alert("Review submitted!");
+            document.getElementById("review-user").value = "";
+            document.getElementById("review-text").value = "";
+            loadListingDetail(); // reload reviews
+        });
+    });
+
+    // Booking form submission
+    document.getElementById("booking-form").addEventListener("submit", e => {
+        e.preventDefault();
+        const booking = {
+            listingId: id,
+            name: document.getElementById("booking-name").value,
+            email: document.getElementById("booking-email").value,
+            phone: document.getElementById("booking-phone").value,
+            date: document.getElementById("booking-date").value,
+            guests: document.getElementById("booking-guests").value,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        };
+        db.collection("bookings").add(booking)
+        .then(() => {
+            document.getElementById("booking-message").textContent = "Booking successful!";
+            document.getElementById("booking-form").reset();
+        }).catch(err => {
+            document.getElementById("booking-message").textContent = "Booking failed. Try again.";
+            console.error(err);
+        });
+    });
+}
+
+// ----------- Initialize Page ------------
+if(document.getElementById("listings-container")) loadListings();
+if(document.getElementById("listing-detail")) loadListingDetail();
+
