@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partner Dashboard - BharatComfort</title>
+<link rel="stylesheet" href="main.css">
+<script src="main.js" defer></script>
+<script src="dashboard.js" defer></script>
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <a href="index.html" class="logo">BharatComfort</a>
+        <nav>
+            <ul>
+                <li><a href="partner-dashboard.html">Dashboard</a></li>
+                <li><a href="#" id="logout-partner">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="dashboard">
+    <div class="container">
+        <h2>Welcome, Partner!</h2>
+        <button id="add-listing-btn">Add New Listing</button>
+
+        <!-- Add Listing Form -->
+        <div id="listing-form-container" style="display:none;">
+            <h3>Add / Edit Listing</h3>
+            <form id="listing-form">
+                <input type="text" id="listing-name" placeholder="Hotel/Restaurant Name" required>
+                <input type="text" id="listing-location" placeholder="Location" required>
+                <input type="text" id="listing-type" placeholder="Type (Hotel/Restaurant)" required>
+                <input type="url" id="listing-image" placeholder="Image URL" required>
+                <input type="number" step="0.1" id="listing-rating" placeholder="Rating (0-5)" required>
+                <button type="submit">Save Listing</button>
+            </form>
+        </div>
+
+        <!-- Partner Listings Table -->
+        <h3>Your Listings</h3>
+        <table id="partner-listings">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Type</th>
+                    <th>Rating</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Listings will load dynamically -->
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>
