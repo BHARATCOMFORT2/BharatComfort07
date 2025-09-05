@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Dashboard - BharatComfort</title>
+<link rel="stylesheet" href="main.css">
+<script src="main.js" defer></script>
+<script src="dashboard.js" defer></script>
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <a href="index.html" class="logo">BharatComfort</a>
+        <nav>
+            <ul>
+                <li><a href="user-dashboard.html">Dashboard</a></li>
+                <li><a href="#" id="logout-user">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="dashboard">
+    <div class="container">
+        <h2>Welcome, User!</h2>
+
+        <!-- My Bookings -->
+        <h3>My Bookings</h3>
+        <table id="user-bookings">
+            <thead>
+                <tr>
+                    <th>Listing Name</th>
+                    <th>Location</th>
+                    <th>Type</th>
+                    <th>Booking Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Bookings will load dynamically -->
+            </tbody>
+        </table>
+
+        <!-- My Stories -->
+        <h3>My Stories</h3>
+        <form id="story-form">
+            <input type="text" id="story-title" placeholder="Story Title" required>
+            <textarea id="story-content" placeholder="Your Experience" required></textarea>
+            <input type="url" id="story-image" placeholder="Image/Video URL (optional)">
+            <button type="submit">Post Story</button>
+        </form>
+
+        <div id="user-stories">
+            <!-- User stories load dynamically -->
+        </div>
+    </div>
+</section>
+</body>
+</html>
