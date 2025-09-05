@@ -58,5 +58,28 @@
 
 <script src="firebase.js"></script>
 <script src="js/main.js"></script>
+    <!-- Reviews -->
+<h3>Reviews</h3>
+<div id="reviews-container"></div>
+
+<div id="review-section">
+    <h4>Add Review</h4>
+    <div id="review-form" style="display:none;">
+        <input type="text" id="review-text" placeholder="Write your review...">
+        <button id="submit-review">Submit Review</button>
+    </div>
+    <p id="login-to-review">Please <a href="login.html">login</a> to add a review.</p>
+</div>
+
+<!-- Booking Form -->
+<h3>Book This Listing</h3>
+<div id="booking-section" style="display:none;">
+    <form id="booking-form">
+        <input type="date" id="booking-date" required>
+        <input type="number" id="booking-guests" placeholder="Number of Guests" required min="1">
+        <button type="submit">Book Now</button>
+    </form>
+</div>
+<p id="login-to-book">Please <a href="login.html">login</a> to book this listing.</p>
 </body>
 </html>
