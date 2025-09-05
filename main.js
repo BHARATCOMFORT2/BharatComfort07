@@ -6,12 +6,12 @@
 <script>
   // Initialize Firebase
   const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT.appspot.com",
-      messagingSenderId: "SENDER_ID",
-      appId: "APP_ID"
+      apiKey: "AIzaSyCIyByoZatiJno8fsVoaEsKHnYq75er6AE",
+      authDomain: "bharatcomfort-46bac.firebaseapp.com",
+      projectId: "bharatcomfort-46bac",
+      storageBucket: "bharatcomfort-46bac.firebasestorage.app",
+      messagingSenderId: "566612210879",
+      appId: "1:566612210879:web:25dfd26a5444f08c9d820a"
   };
   firebase.initializeApp(firebaseConfig);
 
