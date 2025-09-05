@@ -177,6 +177,48 @@ window.addEventListener("click", function(e){
     if(e.target == authModal){
         authModal.style.display = "none";
     }
+  // Booking System
+const bookingForm = document.getElementById("booking-form");
+const bookingSuccess = document.querySelector(".booking-success");
+
+if(bookingForm){
+    bookingForm.addEventListener("submit", function(e){
+        e.preventDefault();
+
+        const user = firebase.auth().currentUser;
+        if(!user){
+            alert("Please login to book!");
+            return;
+        }
+
+        // Get booking info
+        const name = document.getElementById("booking-name").value.trim();
+        const email = document.getElementById("booking-email").value.trim();
+        const contact = document.getElementById("booking-contact").value.trim();
+        const date = document.getElementById("booking-date").value;
+        const guests = parseInt(document.getElementById("booking-guests").value);
+        
+        // Assuming listing details are stored in page or passed via URL
+        const listingName = document.getElementById("listing-name-title").textContent;
+        const location = document.getElementById("listing-location").textContent;
+        const type = document.getElementById("listing-type").textContent;
+
+        // Save booking to Firestore
+        firebase.firestore().collection("bookings").add({
+            userId: user.uid,
+            listingName,
+            location,
+            type,
+            name,
+            email,
+            contact,
+            bookingDate: date,
+            guests,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(()=>{
+            bookingSuccess.style.display = "block";
+            bookingForm.reset();
+        }).catch(err => alert(err.message));
 });
 
     });
