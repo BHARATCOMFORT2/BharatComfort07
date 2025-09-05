@@ -145,6 +145,19 @@
             <p>&copy; 2025 BharatComfort. All rights reserved.</p>
         </div>
     </footer>
+    <!-- Login/Register Modal -->
+<div id="auth-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modal-title">Login</h2>
+        <form id="auth-form">
+            <input type="email" id="auth-email" placeholder="Email" required>
+            <input type="password" id="auth-password" placeholder="Password" required>
+            <button type="submit" id="auth-submit">Login</button>
+        </form>
+        <p id="toggle-text">Don't have an account? <span id="toggle-auth">Register</span></p>
+    </div>
+</div>
 </body>
     <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
