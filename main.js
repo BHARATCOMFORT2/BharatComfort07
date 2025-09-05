@@ -110,6 +110,75 @@ partnerForm.addEventListener("submit", function(e) {
         } else {
             alert("Please enter a destination!");
         }
+      // Authentication Modal
+const authModal = document.getElementById("auth-modal");
+const authForm = document.getElementById("auth-form");
+const authTitle = document.getElementById("modal-title");
+const authSubmit = document.getElementById("auth-submit");
+const toggleAuth = document.getElementById("toggle-auth");
+const closeModal = document.querySelector(".modal .close");
+
+let isLogin = true; // Track login/register mode
+
+// Open modal
+document.querySelector('a[href="#login"]').addEventListener("click", function(e){
+    e.preventDefault();
+    authModal.style.display = "block";
+});
+
+// Close modal
+closeModal.addEventListener("click", function(){
+    authModal.style.display = "none";
+});
+
+// Toggle login/register
+toggleAuth.addEventListener("click", function(){
+    isLogin = !isLogin;
+    if(isLogin){
+        authTitle.textContent = "Login";
+        authSubmit.textContent = "Login";
+        toggleAuth.textContent = "Register";
+    } else {
+        authTitle.textContent = "Register";
+        authSubmit.textContent = "Register";
+        toggleAuth.textContent = "Login";
+    }
+});
+
+// Handle form submit
+authForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    const email = document.getElementById("auth-email").value.trim();
+    const password = document.getElementById("auth-password").value.trim();
+
+    if(isLogin){
+        // Login
+        auth.signInWithEmailAndPassword(email, password)
+        .then(userCredential => {
+            alert("Logged in as: " + userCredential.user.email);
+            authModal.style.display = "none";
+            authForm.reset();
+        })
+        .catch(error => alert(error.message));
+    } else {
+        // Register
+        auth.createUserWithEmailAndPassword(email, password)
+        .then(userCredential => {
+            alert("Registered: " + userCredential.user.email);
+            authModal.style.display = "none";
+            authForm.reset();
+        })
+        .catch(error => alert(error.message));
+    }
+});
+
+// Close modal when clicking outside content
+window.addEventListener("click", function(e){
+    if(e.target == authModal){
+        authModal.style.display = "none";
+    }
+});
+
     });
 
     // 4. Placeholder for Dynamic Listings / Stories Loading
