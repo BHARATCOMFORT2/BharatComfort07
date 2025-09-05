@@ -323,6 +323,55 @@ function loadListingDetail() {
         });
     });
 }
+auth.onAuthStateChanged(user => {
+    if(user){
+        // Show booking & review forms
+        document.getElementById("booking-section").style.display = "block";
+        document.getElementById("review-form").style.display = "block";
+        document.getElementById("login-to-book").style.display = "none";
+        document.getElementById("login-to-review").style.display = "none";
+    }
+});
+
+// -------- Review Submission --------
+document.getElementById("submit-review")?.addEventListener("click", () => {
+    const user = auth.currentUser;
+    if(!user) return alert("Login required to post a review.");
+
+    const text = document.getElementById("review-text").value;
+    if(!text) return alert("Write your review first.");
+
+    const reviewData = { user: user.displayName || user.email, text };
+    const listingRef = db.collection("listings").doc(listingId);
+    listingRef.update({
+        reviews: firebase.firestore.FieldValue.arrayUnion(reviewData)
+    }).then(() => {
+        alert("Review submitted!");
+        document.getElementById("review-text").value = "";
+        loadListingDetail(); // reload reviews
+    });
+});
+
+// -------- Booking Submission --------
+document.getElementById("booking-form")?.addEventListener("submit", e => {
+    e.preventDefault();
+    const user = auth.currentUser;
+    if(!user) return alert("Login required to book.");
+
+    const booking = {
+        listingId: listingId,
+        userId: user.uid,
+        userName: user.displayName || user.email,
+        date: document.getElementById("booking-date").value,
+        guests: document.getElementById("booking-guests").value,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+
+    db.collection("bookings").add(booking).then(() => {
+        alert("Booking successful!");
+        document.getElementById("booking-form").reset();
+    }).catch(err => console.error(err));
+});
 
 // ----------- Initialize Page ------------
 if(document.getElementById("listings-container")) loadListings();
