@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BharatComfort - Hotels, Restaurants & Travel</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="main.js" defer></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">BharatComfort</a>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#listings">Listings</a></li>
+                    <li><a href="#travel-planner">Travel Planner</a></li>
+                    <li><a href="#stories">Stories</a></li>
+                    <li><a href="#partner">Partner With Us</a></li>
+                    <li><a href="#login">Login/Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find the Best Hotels, Restaurants & Travel Options in India</h1>
+            <p>Search, Explore, Book, and Share Your Experiences!</p>
+            <div class="search-bar">
+                <input type="text" placeholder="Search city, hotel, restaurant...">
+                <button>Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Listings Section -->
+    <section id="listings" class="featured-listings">
+        <div class="container">
+            <h2>Featured Hotels & Restaurants</h2>
+            <div class="listing-cards">
+                <!-- Sample Card -->
+                <div class="card">
+                    <img src="images/hotel1.jpg" alt="Hotel 1">
+                    <div class="card-info">
+                        <h3>Hotel Royal Comfort</h3>
+                        <p>Patna, Bihar</p>
+                        <p>⭐⭐⭐⭐☆ (4.5)</p>
+                        <a href="#">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/restaurant1.jpg" alt="Restaurant 1">
+                    <div class="card-info">
+                        <h3>Spice & Grill</h3>
+                        <p>Patna, Bihar</p>
+                        <p>⭐⭐⭐⭐☆ (4.3)</p>
+                        <a href="#">View Details</a>
+                    </div>
+                </div>
+                <!-- More cards can be added dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Stories Section -->
+    <section id="stories" class="trending-stories">
+        <div class="container">
+            <h2>Trending Stories & Experiences</h2>
+            <div class="stories-cards">
+                <div class="story-card">
+                    <img src="images/story1.jpg" alt="Story 1">
+                    <h4>Amazing Stay in Patna</h4>
+                    <p>By User123</p>
+                </div>
+                <div class="story-card">
+                    <img src="images/story2.jpg" alt="Story 2">
+                    <h4>Delicious Food at Spice & Grill</h4>
+                    <p>By Foodie456</p>
+                </div>
+                <!-- More stories -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Planner Section -->
+    <section id="travel-planner" class="travel-planner">
+        <div class="container">
+            <h2>Plan Your Travel</h2>
+            <p>Search destinations and find comfortable travel options.</p>
+            <div class="travel-search">
+                <input type="text" placeholder="Enter destination">
+                <button>Plan Trip</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner With Us Section -->
+    <section id="partner" class="partner-section">
+        <div class="container">
+            <h2>Partner With Us</h2>
+            <form id="partner-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="text" name="business" placeholder="Business Name" required>
+                <input type="text" name="designation" placeholder="Designation" required>
+                <input type="tel" name="contact" placeholder="Contact Number" required>
+                <input type="text" name="reference" placeholder="Reference (Optional)">
+                <button type="submit">Submit</button>
+            </form>
+            <p class="form-success" style="display:none;">Thank you! We will contact you soon.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-left">
+                <h3>BharatComfort</h3>
+                <p>Discover the best hotels, restaurants, and travel options in India.</p>
+            </div>
+            <div class="footer-right">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#listings">Listings</a></li>
+                    <li><a href="#travel-planner">Travel Planner</a></li>
+                    <li><a href="#stories">Stories</a></li>
+                    <li><a href="#partner">Partner With Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 BharatComfort. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
