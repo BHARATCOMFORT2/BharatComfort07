@@ -77,3 +77,37 @@ auth.onAuthStateChanged(user => {
         });
     }
 });
+// Open & Close Modal
+const modal = document.getElementById("login-modal");
+document.getElementById("open-login").addEventListener("click", ()=> modal.style.display="block");
+document.getElementById("close-login").addEventListener("click", ()=> modal.style.display="none");
+window.addEventListener("click", e=>{ if(e.target==modal) modal.style.display="none"; });
+
+// Modal Login/Register buttons
+document.getElementById("modal-register-btn").addEventListener("click", ()=>{
+    const name=document.getElementById("modal-register-name").value;
+    const email=document.getElementById("modal-register-email").value;
+    const password=document.getElementById("modal-register-password").value;
+    let role=document.getElementById("modal-register-role").value;
+    if(email==="superadmin@bharatcomfort.com") role="superadmin";
+    if(!name||!email||!password) return alert("Fill all fields");
+
+    auth.createUserWithEmailAndPassword(email,password).then(cred=>{
+        return db.collection("users").doc(cred.user.uid).set({name,email,role,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+    }).then(()=>{ document.getElementById("modal-auth-message").textContent="Registration successful!"; }).catch(err=>{ document.getElementById("modal-auth-message").textContent=err.message; console.error(err); });
+});
+
+document.getElementById("modal-login-btn").addEventListener("click", ()=>{
+    const email=document.getElementById("modal-login-email").value;
+    const password=document.getElementById("modal-login-password").value;
+    if(!email||!password) return alert("Enter email & password");
+
+    auth.signInWithEmailAndPassword(email,password).then(cred=>{
+        db.collection("users").doc(cred.user.uid).get().then(doc=>{
+            const role=doc.data().role;
+            if(role==="superadmin") window.location.href="superadmin-dashboard.html";
+            else if(role==="partner") window.location.href="partner-dashboard.html";
+            else window.location.href="index.html";
+        });
+    }).catch(err=>{ document.getElementById("modal-auth-message").textContent=err.message; console.error(err); });
+});
